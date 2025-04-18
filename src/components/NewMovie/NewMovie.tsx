@@ -16,6 +16,7 @@ export const NewMovie: React.FC<Props> = ({ onAdd }) => {
   const [imgUrl, setImgUrl] = useState('');
   const [imdbId, setImdbId] = useState('');
   const [disableAdd, setDisableAdd] = useState(true);
+  const hasError = title && imdbUrl && imdbId && imgUrl;
   const reset = () => {
     setTitle('');
     setDescription('');
@@ -45,7 +46,7 @@ export const NewMovie: React.FC<Props> = ({ onAdd }) => {
   const handleChangeTitle = (newTitle: string) => {
     setTitle(newTitle);
 
-    if (title && imdbUrl && imdbId && imgUrl) {
+    if (hasError) {
       setDisableAdd(false);
     }
   };
@@ -53,7 +54,7 @@ export const NewMovie: React.FC<Props> = ({ onAdd }) => {
   const handleChangeDescription = (newDescription: string) => {
     setDescription(newDescription);
 
-    if (title && imdbUrl && imdbId && imgUrl) {
+    if (hasError) {
       setDisableAdd(false);
     }
   };
@@ -61,7 +62,7 @@ export const NewMovie: React.FC<Props> = ({ onAdd }) => {
   const handleChangeImgUrl = (newImgUrl: string) => {
     setImgUrl(newImgUrl);
 
-    if (title && imdbUrl && imdbId && imgUrl) {
+    if (hasError) {
       setDisableAdd(false);
     }
   };
@@ -69,7 +70,7 @@ export const NewMovie: React.FC<Props> = ({ onAdd }) => {
   const handleChangeImdbUrl = (newUrl: string) => {
     setImdbUrl(newUrl);
 
-    if (title && imdbUrl && imdbId && imgUrl) {
+    if (hasError) {
       setDisableAdd(false);
     }
   };
@@ -77,7 +78,7 @@ export const NewMovie: React.FC<Props> = ({ onAdd }) => {
   const handleChangeImdbId = (newImdbId: string) => {
     setImdbId(newImdbId);
 
-    if (title && imdbUrl && imdbId && imgUrl) {
+    if (hasError) {
       setDisableAdd(false);
     }
   };

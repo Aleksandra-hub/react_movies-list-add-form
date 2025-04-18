@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { TextField } from '../TextField';
 import { Movie } from '../../types/Movie';
 
@@ -16,7 +16,6 @@ export const NewMovie: React.FC<Props> = ({ onAdd }) => {
   const [imgUrl, setImgUrl] = useState('');
   const [imdbId, setImdbId] = useState('');
   const [disableAdd, setDisableAdd] = useState(true);
-  const hasError = title && imdbUrl && imdbId && imgUrl;
   const reset = () => {
     setTitle('');
     setDescription('');
@@ -25,6 +24,11 @@ export const NewMovie: React.FC<Props> = ({ onAdd }) => {
     setImgUrl('');
   };
 
+  useEffect(() => {
+    if (title && imdbUrl && imdbId && imgUrl) {
+      setDisableAdd(false);
+    }
+  }, [title, imdbUrl, imgUrl, imdbId]);
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
 
@@ -45,42 +49,22 @@ export const NewMovie: React.FC<Props> = ({ onAdd }) => {
 
   const handleChangeTitle = (newTitle: string) => {
     setTitle(newTitle);
-
-    if (hasError) {
-      setDisableAdd(false);
-    }
   };
 
   const handleChangeDescription = (newDescription: string) => {
     setDescription(newDescription);
-
-    if (hasError) {
-      setDisableAdd(false);
-    }
   };
 
   const handleChangeImgUrl = (newImgUrl: string) => {
     setImgUrl(newImgUrl);
-
-    if (hasError) {
-      setDisableAdd(false);
-    }
   };
 
   const handleChangeImdbUrl = (newUrl: string) => {
     setImdbUrl(newUrl);
-
-    if (hasError) {
-      setDisableAdd(false);
-    }
   };
 
   const handleChangeImdbId = (newImdbId: string) => {
     setImdbId(newImdbId);
-
-    if (hasError) {
-      setDisableAdd(false);
-    }
   };
 
   return (
